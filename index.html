@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asih Knch M. Pude | IT Support Specialist & Portfolio</title>
+  
+  <!-- Inter & SF Pro fallback fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       Design System & Tokens (Palette: #4A0026, #6C1B3D, #9C5B78, #E6DEE3, #4E545C)
+       Inspired by Luro (heyshreyas.com): Ultra-clean minimal bento layout, mono typography,
+       subtle ambient grainient gradients, pill badges, and liquid frosted glass.
+       ========================================================================== */
+    :root {
+      --bg-primary: #12050b;
+      --bg-surface: rgba(74, 0, 38, 0.18);
+      --bg-glass: rgba(108, 27, 61, 0.14);
+      --bg-glass-strong: rgba(78, 84, 92, 0.12);
+      
+      --color-plum-deep: #4A0026;
+      --color-wine: #6C1B3D;
+      --color-rosewood: #9C5B78;
+      --color-mist: #E6DEE3;
+      --color-slate: #4E545C;
+
+      /* Monocolor Text Hierarchy */
+      --text-main: #FFFFFF;
+      --text-subtle: #E6DEE3;
+      --text-muted: rgba(230, 222, 227, 0.68);
+      --text-faint: rgba(230, 222, 227, 0.42);
+
+      /* Glass Borders & Highlights */
+      --glass-border: rgba(230, 222, 227, 0.12);
+      --glass-border-hover: rgba(230, 222, 227, 0.28);
+      --liquid-shine: linear-gradient(135deg, rgba(230, 222, 227, 0.18) 0%, rgba(230, 222, 227, 0.02) 100%);
+      
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+
+      --font-stack: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-subtle);
+      font-family: var(--font-stack);
+      line-height: 1.55;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Monocolor typography */
+    h1, h2, h3, h4, h5, h6, p, span, a, button, label, li {
+      color: var(--text-subtle);
+    }
+    h1, h2, h3, strong {
+      color: var(--text-main);
+    }
+
+    /* Ambient Dynamic Grainient Canvas */
+    #grainient-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.65;
+    }
+
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.045'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .app-wrapper {
+      position: relative;
+      z-index: 2;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 1.5rem 6rem;
+    }
+
+    /* Responsive Liquid Glass Navigation */
+    .nav-container {
+      position: sticky;
+      top: 1.25rem;
+      z-index: 50;
+      margin: 1.25rem auto 3rem;
+      max-width: 900px;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 1.4rem;
+      border-radius: var(--radius-full);
+      background: rgba(74, 0, 38, 0.35);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(230, 222, 227, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--color-mist);
+      box-shadow: 0 0 10px rgba(230, 222, 227, 0.7);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .nav-cta {
+      padding: 0.45rem 1rem;
+      border-radius: var(--radius-full);
+      background: rgba(230, 222, 227, 0.12);
+      border: 1px solid var(--glass-border);
+      font-size: 0.82rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: rgba(230, 222, 227, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background-color: var(--text-subtle);
+      margin: 4px 0;
+      transition: 0.25s;
+    }
+
+    .mobile-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.6rem);
+      left: 0;
+      right: 0;
+      background: rgba(30, 6, 17, 0.92);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .mobile-dropdown.open {
+      display: flex;
+    }
+
+    .mobile-dropdown a {
+      text-decoration: none;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.9rem;
+      color: var(--text-subtle);
+      border-radius: var(--radius-sm);
+    }
+
+    .mobile-dropdown a:hover {
+      background: rgba(230, 222, 227, 0.08);
+      color: var(--text-main);
+    }
+
+    /* Liquid Glass Cards & Bento Styles */
+    .liquid-card {
+      background: linear-gradient(145deg, rgba(108, 27, 61, 0.22) 0%, rgba(78, 84, 92, 0.15) 100%);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.35s ease;
+    }
+
+    .liquid-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--liquid-shine);
+      pointer-events: none;
+    }
+
+    .liquid-card:hover {
+      border-color: var(--glass-border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Hero Bento */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.95fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      align-items: stretch;
+    }
+
+    .hero-intro {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      align-self: flex-start;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-full);
+      background: rgba(230, 222, 227, 0.08);
+      border: 1px solid var(--glass-border);
+      margin-bottom: 1.25rem;
+    }
+
+    .badge-indicator {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #73e6a4;
+      box-shadow: 0 0 8px rgba(115, 230, 164, 0.8);
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.4rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-solid {
+      background: var(--text-main);
+      color: #210210 !important;
+      border: 1px solid #ffffff;
+    }
+
+    .btn-solid:hover {
+      background: var(--color-mist);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: rgba(230, 222, 227, 0.07);
+      border: 1px solid var(--glass-border);
+      color: var(--text-subtle);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(230, 222, 227, 0.16);
+      border-color: var(--glass-border-hover);
+    }
+
+    .hero-profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2.5rem 1.75rem;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 170px;
+      height: 170px;
+      margin-bottom: 1.5rem;
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(230, 222, 227, 0.3);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .avatar-halo {
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(156, 91, 120, 0.45) 0%, transparent 70%);
+      z-index: -1;
+      animation: pulse 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.96); opacity: 0.6; }
+      100% { transform: scale(1.08); opacity: 1; }
+    }
+
+    .profile-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+    }
+
+    .profile-role {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .meta-pill {
+      font-size: 0.72rem;
+      background: rgba(230, 222, 227, 0.08);
+      border: 1px solid var(--glass-border);
+      padding: 0.3rem 0.65rem;
+      border-radius: var(--radius-full);
+      color: var(--text-subtle);
+    }
+
+    /* Section Spacing & Headings */
+    .section-spacing {
+      margin-top: 4.5rem;
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      font-weight: 600;
+    }
+
+    .section-heading {
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+    }
+
+    /* Bento Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    div.project-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-number {
+      font-size: 0.75rem;
+      font-family: monospace;
+      color: var(--text-faint);
+      padding: 0.25rem 0.55rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--glass-border);
+      background: rgba(0, 0, 0, 0.15);
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: auto;
+    }
+
+    .project-tag {
+      font-size: 0.72rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-full);
+      background: rgba(230, 222, 227, 0.06);
+      border: 1px solid var(--glass-border);
+      color: var(--text-subtle);
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    div.skill-card {
+      padding: 1.6rem;
+    }
+
+    .skill-icon-bar {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-md);
+      background: rgba(230, 222, 227, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      border: 1px solid var(--glass-border);
+    }
+
+    .skill-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Dual Grid */
+    .dual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .timeline-item {
+      padding-bottom: 1.4rem;
+      margin-bottom: 1.4rem;
+      border-bottom: 1px solid rgba(230, 222, 227, 0.08);
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+
+    .timeline-year {
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+    }
+
+    .timeline-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-org {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .honors-pill {
+      display: inline-block;
+      font-size: 0.72rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: var(--radius-full);
+      background: rgba(230, 222, 227, 0.09);
+      border: 1px solid var(--glass-border);
+    }
+
+    .ref-card {
+      margin-bottom: 1.2rem;
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--glass-border);
+    }
+    .ref-card:last-child { margin-bottom: 0; }
+    .ref-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.15rem; }
+    .ref-role { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.2rem; }
+    .ref-contact { font-size: 0.78rem; color: var(--text-faint); font-family: monospace; }
+
+    /* Interactive Document Preview Viewer */
+    .document-preview-card {
+      background: rgba(24, 4, 15, 0.75);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--glass-border);
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    .doc-nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.85rem 1.5rem;
+      background: rgba(108, 27, 61, 0.28);
+      border-bottom: 1px solid var(--glass-border);
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .doc-tabs {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .doc-tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      padding: 0.45rem 1.1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+    }
+
+    .doc-tab-btn.active {
+      background: rgba(230, 222, 227, 0.15);
+      color: var(--text-main);
+      border-color: var(--glass-border);
+    }
+
+    .paper-sheet-container {
+      padding: 2.5rem;
+      background: rgba(15, 3, 10, 0.5);
+      display: flex;
+      justify-content: center;
+    }
+
+    .paper-sheet {
+      width: 100%;
+      max-width: 780px;
+      background: #faf8f9;
+      color: #1e0611;
+      padding: 3.5rem 3.5rem;
+      border-radius: 6px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+      position: relative;
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .paper-sheet * {
+      color: #2a0b1b !important;
+    }
+
+    .paper-header {
+      border-bottom: 2px solid #5a1433;
+      padding-bottom: 1.4rem;
+      margin-bottom: 1.6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .paper-title {
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .paper-meta {
+      text-align: right;
+      font-size: 0.82rem;
+      color: #664f59 !important;
+      line-height: 1.4;
+    }
+
+    .doc-content-pane {
+      display: none;
+    }
+
+    .doc-content-pane.active {
+      display: block;
+      animation: fadeInDoc 0.35s ease;
+    }
+
+    @keyframes fadeInDoc {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 3.5rem;
+    }
+
+    a.contact-item {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.8rem;
+      text-align: center;
+      gap: 0.6rem;
+      position: relative;
+    }
+
+    .contact-icon-wrapper {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-full);
+      background: rgba(230, 222, 227, 0.08);
+      border: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.2rem;
+      transition: transform 0.25s ease, background-color 0.25s ease;
+    }
+
+    a.contact-item:hover .contact-icon-wrapper {
+      transform: scale(1.08);
+      background: rgba(230, 222, 227, 0.16);
+    }
+
+    a.contact-item span.contact-label {
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+    }
+
+    a.contact-item span.contact-val {
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .external-arrow {
+      position: absolute;
+      top: 1.1rem;
+      right: 1.2rem;
+      font-size: 0.8rem;
+      color: var(--text-faint);
+      opacity: 0.7;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    a.contact-item:hover .external-arrow {
+      transform: translate(2px, -2px);
+      opacity: 1;
+      color: var(--text-main);
+    }
+
+    footer {
+      border-top: 1px solid rgba(230, 222, 227, 0.08);
+      padding: 2.5rem 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--text-faint);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* Scroll Animation Utility */
+    .fade-scroll {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fade-scroll.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .dual-grid { grid-template-columns: 1fr; }
+      .contact-grid, .social-links-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .nav-links, .nav-cta { display: none; }
+      .menu-toggle { display: block; }
+      .paper-sheet { padding: 2rem 1.5rem; }
+      .paper-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+      .paper-meta { text-align: left; }
+    }
+
+    /* ==========================================================================
+   Official Documents Bento Cards (Pixel-matched to reference)
+   ========================================================================== */
+
+/* Symmetrical 2-column grid with clean gap */
+.documents-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+/* Outer Card Container */
+.doc-card {
+  background: rgba(18, 14, 18, 0.72);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 2.25rem 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+.doc-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+/* Subtle inner glow highlight along the top border */
+.doc-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  pointer-events: none;
+}
+
+/* Card Header: Title on the left, pill badge on the right */
+.doc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.doc-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.doc-title svg {
+  flex-shrink: 0;
+}
+
+/* "Official Document" Pill Badge */
+.doc-badge {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.45rem 1.15rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.85);
+  white-space: nowrap;
+}
+
+/* The Paper Preview Frame (Rounded, white paper sheet look) */
+.doc-preview-wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1.32;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.doc-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.doc-preview-wrapper:hover .doc-preview-img {
+  transform: scale(1.02);
+}
+
+/* Bottom Action Buttons (Side-by-side pill buttons) */
+.doc-card-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  margin-top: auto;
+}
+
+.doc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.doc-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* ==========================================================================
+   Mobile Responsiveness
+   ========================================================================== */
+@media (max-width: 860px) {
+  .documents-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .doc-card {
+    padding: 1.75rem 1.5rem 1.5rem;
+    border-radius: 22px;
+  }
+
+  .doc-title {
+    font-size: 1.2rem;
+  }
+
+  .doc-btn {
+    padding: 0.8rem 1rem;
+    font-size: 0.88rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .doc-card-actions {
+    grid-template-columns: 1fr;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <!-- Dynamic Grainient Canvas -->
+  <canvas id="grainient-canvas"></canvas>
+  <div class="noise-overlay"></div>
+
+  <div class="app-wrapper">
+    
+    <!-- Responsive Floating Glass Navbar -->
+    <header class="nav-container">
+      <nav class="navbar">
+        <a href="#home" class="brand-mark">
+          <span class="brand-dot"></span>
+          <span>ASIH PUDE</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#documents">Credentials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <a href="#contact" class="nav-cta">Get in Touch</a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="mobile-dropdown" id="mobileDropdown">
+          <a href="#about" class="mob-link">About</a>
+          <a href="#projects" class="mob-link">Projects</a>
+          <a href="#skills" class="mob-link">Skills</a>
+          <a href="#documents" class="mob-link">Credentials</a>
+          <a href="#contact" class="mob-link">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main id="home">
+      <section class="hero-grid fade-scroll">
+        <div class="liquid-card hero-intro">
+          <div>
+            <div class="badge">
+              <span class="badge-indicator"></span>
+              <span>Available for Technical Roles</span>
+            </div>
+            <h1 class="hero-title">IT Support Specialist & Systems Technician.</h1>
+            <p class="hero-subtitle">
+              Caraga State University graduate (Cum Laude). Experienced in computer hardware troubleshooting, network infrastructure, software deployment, and hands-on user assistance.<!--[cite: 2, 3] -->
+            </p>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#documents" class="btn btn-solid">Inspect Credentials</a>
+            <a href="#projects" class="btn btn-ghost">View Technical Work</a>
+          </div>
+        </div>
+
+        <div class="liquid-card hero-profile" id="about">
+          <div class="avatar-wrapper">
+            <div class="avatar-halo"></div>
+            <img 
+              src="Pude Asih 3.jpg" 
+              alt="Asih Knch M. Pude" 
+              class="avatar-img"
+            >
+          </div>
+          <h2 class="profile-name">Asih Knch M. Pude</h2>
+          <p class="profile-role">BS Information Technology • Caraga State University</p>
+          <div class="meta-pills">
+            <span class="meta-pill">Cum Laude</span>
+            <span class="meta-pill">Dean's Lister</span>
+            <span class="meta-pill">Butuan City, PH</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="section-spacing fade-scroll">
+        <div class="section-header">
+          <span class="section-label">Selected Portfolio Work</span>
+          <h2 class="section-heading">Key Technical Deployments</h2>
+        </div>
+
+        <div class="projects-grid">
+          <div class="liquid-card project-card">
+            <div>
+              <div class="project-header">
+                <span class="project-number">PROJECT // 01</span>
+                <span class="project-tag">Networking</span>
+              </div>
+              <h3 class="project-title">Computer Network Setup Project</h3>
+              <p class="project-desc">
+                Designed and implemented full office network topologies, incorporating LAN architecture, managed Wi-Fi access points, DHCP routing, and TCP/IP subnet configuration for seamless workstation connectivity.<!--[cite: 3] -->
+              </p>
+            </div>
+            <div class="tag-container">
+              <span class="project-tag">TCP/IP</span>
+              <span class="project-tag">LAN / Wi-Fi</span>
+              <span class="project-tag">Routing</span>
+              <span class="project-tag">Troubleshooting</span>
+            </div>
+          </div>
+
+          <div class="liquid-card project-card">
+            <div>
+              <div class="project-header">
+                <span class="project-number">PROJECT // 02</span>
+                <span class="project-tag">Support Desk</span>
+              </div>
+              <h3 class="project-title">IT Help Desk Simulation System</h3>
+              <p class="project-desc">
+                Conducted end-to-end incident ticketing simulations for technical support. Handled multi-level issue resolution, user account provisioning, Windows permissions, and strict technical ticket documentation.<!--[cite: 3] -->
+              </p>
+            </div>
+            <div class="tag-container">
+              <span class="project-tag">User Support</span>
+              <span class="project-tag">Windows OS</span>
+              <span class="project-tag">Incident Logging</span>
+              <span class="project-tag">Help Desk</span>
+            </div>
+          </div>
+
+          <div class="liquid-card project-card">
+            <div>
+              <div class="project-header">
+                <span class="project-number">PROJECT // 03</span>
+                <span class="project-tag">Hardware</span>
+              </div>
+              <h3 class="project-title">Hardware & Peripheral Maintenance</h3>
+              <p class="project-desc">
+                Hands-on diagnostics, preventative hardware cleaning, component repairs, printer configuration, peripheral interfacing, and diagnostic testing across institutional workstation deployments.<!--[cite: 2, 3] -->
+              </p>
+            </div>
+            <div class="tag-container">
+              <span class="project-tag">Diagnostics</span>
+              <span class="project-tag">Printers</span>
+              <span class="project-tag">Component Repair</span>
+              <span class="project-tag">Maintenance</span>
+            </div>
+          </div>
+
+          <div class="liquid-card project-card">
+            <div>
+              <div class="project-header">
+                <span class="project-number">PROJECT // 04</span>
+                <span class="project-tag">Software System</span>
+              </div>
+              <h3 class="project-title">Gym Membership & Facility System</h3>
+              <p class="project-desc">
+                Engineered a comprehensive facility database and membership recording platform. Implemented structured relational schemas, SQL querying, user activity logs, and automated schedule tracking.<!--[cite: 3] -->
+              </p>
+            </div>
+            <div class="tag-container">
+              <span class="project-tag">SQL</span>
+              <span class="project-tag">Database Management</span>
+              <span class="project-tag">Software Systems</span>
+              <span class="project-tag">Architecture</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="section-spacing fade-scroll">
+        <div class="section-header">
+          <span class="section-label">Capabilities</span>
+          <h2 class="section-heading">Technical & Professional Competencies</h2>
+        </div>
+
+        <div class="skills-grid">
+          <div class="liquid-card skill-card">
+            <div class="skill-icon-bar">⚙️</div>
+            <h3 class="skill-title">Hardware Troubleshooting</h3>
+            <p class="skill-desc">Component-level diagnosis, assembly, upgrades, thermal management, and peripheral interfacing.<!--[cite: 2, 3] --></p>
+          </div>
+
+          <div class="liquid-card skill-card">
+            <div class="skill-icon-bar">🌐</div>
+            <h3 class="skill-title">Network Administration</h3>
+            <p class="skill-desc">LAN & Wi-Fi configuration, TCP/IP fundamentals, router setup, cable crimping, and packet inspection.<!--[cite: 3] --></p>
+          </div>
+
+          <div class="liquid-card skill-card">
+            <div class="skill-icon-bar">🗄️</div>
+            <h3 class="skill-title">Database Management</h3>
+            <p class="skill-desc">Relational schema design, SQL data definition and queries, data integrity, and operational backups.<!--[cite: 2, 3] --></p>
+          </div>
+
+          <div class="liquid-card skill-card">
+            <div class="skill-icon-bar">🛡️</div>
+            <h3 class="skill-title">System & Cyber Hygiene</h3>
+            <p class="skill-desc">OS patching, Windows user management, endpoint antivirus protocols, and credential handling.<!--[cite: 3] --></p>
+          </div>
+
+          <div class="liquid-card skill-card">
+            <div class="skill-icon-bar">🧩</div>
+            <h3 class="skill-title">Adaptability & Problem-Solving</h3>
+            <p class="skill-desc">Rapid adaptation to new tools, organized triaging, calm customer-focused technical support.<!--[cite: 2, 3] --></p>
+          </div>
+
+          <div class="liquid-card skill-card">
+            <div class="skill-icon-bar">📝</div>
+            <h3 class="skill-title">Technical Documentation</h3>
+            <p class="skill-desc">Standard operating procedures (SOP), user guides, issue reports, and inventory control.<!--[cite: 3] --></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education & References Section -->
+      <section class="section-spacing fade-scroll">
+        <div class="dual-grid">
+          <div class="liquid-card">
+            <div class="section-header" style="margin-bottom: 1.5rem;">
+              <span class="section-label">Academic Background</span>
+              <h2 class="section-heading" style="font-size: 1.5rem;">Education & Leadership</h2>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-year">2025 – 2029</div>
+              <h4 class="timeline-title">Bachelor of Science in Information Technology</h4>
+              <p class="timeline-org">Caraga State University • Ampayon, Butuan City<!--[cite: 2, 3] --></p>
+              <div style="margin-top: 0.4rem; display: flex; gap: 0.4rem;">
+                <span class="honors-pill">Cum Laude</span>
+                <span class="honors-pill">Dean's Lister</span>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-year">2023 – 2025</div>
+              <h4 class="timeline-title">STEM (Science, Tech, Engineering & Math)</h4>
+              <p class="timeline-org">Agusan National High School<!--[cite: 2] --></p>
+              <div style="margin-top: 0.4rem;">
+                <span class="honors-pill">High Honors</span>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-year">Organizations & Activities</div>
+              <h4 class="timeline-title">IT Student Organization Support Team</h4>
+              <p class="timeline-org">Student Technical Support • Troubleshooting Workshops<!--[cite: 3] --></p>
+            </div>
+          </div>
+
+          <div class="liquid-card">
+            <div class="section-header" style="margin-bottom: 1.5rem;">
+              <span class="section-label">Endorsements</span>
+              <h2 class="section-heading" style="font-size: 1.5rem;">Character References</h2>
+            </div>
+
+            <div class="ref-card">
+              <div class="ref-name">Jaybee Bernard O. Homicilio</div>
+              <div class="ref-role">Professor, Caraga State University<!--[cite: 2] --></div>
+              <div class="ref-contact">jaybeehomicilio@gmail.com<!--[cite: 2] --></div>
+            </div>
+
+            <div class="ref-card">
+              <div class="ref-name">Engr. Gabriel Picato</div>
+              <div class="ref-role">Instructor, Caraga State University<!--[cite: 2] --></div>
+              <div class="ref-contact">picatogabriel@gmail.com<!--[cite: 2] --></div>
+            </div>
+
+            <div class="ref-card">
+              <div class="ref-name">Andrei Christian Aban</div>
+              <div class="ref-role">Professor, Caraga State University<!--[cite: 2] --></div>
+              <div class="ref-contact">jandreichristianaban@gmail.com<!--[cite: 2] --></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Credentials Preview Section -->
+      <section id="documents" class="section-spacing fade-scroll">
+        <div class="section-header">
+          <span class="section-label">Document Viewer</span>
+          <h2 class="section-heading">Official Credentials & Application</h2>
+        </div>
+
+        <div class="document-preview-card">
+          <div class="doc-nav-bar">
+            
+            <div>
+              <button class="btn btn-ghost" id="printDocBtn" style="padding: 0.35rem 0.85rem; font-size: 0.78rem;">Print Preview</button>
+            </div>
+          </div>
+          
+
+          
+          </div>
+        </div>
+        <div class="documents-grid">
+          <!-- Document 1: Pure Resume Picture -->
+          <div class="doc-card liquid-glass">
+            <div class="doc-header">
+              <span class="doc-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--aurora-crimson);"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                Curriculum Vitae / Resume
+              </span>
+              <span class="doc-badge">Official Document</span>
+            </div>
+
+            <a href="#modal-resume" class="doc-preview-wrapper" title="Tap to view fullscreen">
+              <img src="WC Template.png" alt="Jay Bernard O. Homecillo Resume" class="doc-preview-img" onerror="this.onerror=null; this.src='image_4f0d83.png';" />
+            </a>
+
+            <div class="doc-card-actions">
+              <a href="#modal-resume" class="doc-btn">Fullscreen View</a>
+              <a href="WC Template.png" target="_blank" download="JayBernard_Homecillo_Resume.png" class="doc-btn">Download Image</a>
+            </div>
+          </div>
+
+          <!-- Document 2: Pure Application Letter Picture -->
+          <div class="doc-card liquid-glass">
+            <div class="doc-header">
+              <span class="doc-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--aurora-lavender);"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                Application Letter
+              </span>
+              <span class="doc-badge">Official Document</span>
+            </div>
+
+            <a href="#modal-letter" class="doc-preview-wrapper" title="Tap to view fullscreen">
+              <img src="Application-Letter-Pude-1.png" alt="Jay Bernard O. Homecillo Application Letter" class="doc-preview-img" onerror="this.onerror=null; this.src='image_4f0d7a.png';" />
+            </a>
+
+            <div class="doc-card-actions">
+              <a href="#modal-letter" class="doc-btn">Fullscreen View</a>
+              <a href="Application-Letter-Pude-1.png" target="_blank" download="JayBernard_Homecillo_ApplicationLetter.png" class="doc-btn">Download Image</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact & Social Link Cards Section -->
+      <section id="contact" class="section-spacing fade-scroll">
+        <div class="section-header">
+          <span class="section-label">Connect</span>
+          <h2 class="section-heading">Direct Channels & Profiles</h2>
+        </div>
+
+        <!-- Primary Contacts Grid -->
+        <div class="contact-grid">
+          <a href="mailto:pudeasih@gmail.com" class="liquid-card contact-item">
+            <span class="contact-label">Email</span>
+            <span class="contact-val">pudeasih@gmail.com</span>
+            <span class="external-arrow">↗</span>
+          </a>
+
+          <a href="tel:+639243960542" class="liquid-card contact-item">
+            <span class="contact-label">Mobile</span>
+            <span class="contact-val">+63 924 396 0542</span>
+            <span class="external-arrow">↗</span>
+          </a>
+
+          <a href="#contact" class="liquid-card contact-item">
+            <span class="contact-label">Location</span>
+            <span class="contact-val">Butuan City, PH</span>
+          </a>
+        </div>
+
+        <!-- Social Platform Link Cards Grid (GitHub, LinkedIn, Facebook) -->
+        <div class="social-links-grid">
+          <!-- GitHub Card -->
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="liquid-card contact-item">
+            <div class="contact-icon-wrapper">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6DEE3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+            </div>
+            <span class="contact-label">Code Repositories</span>
+            <span class="contact-val">GitHub</span>
+            <span class="external-arrow">↗</span>
+          </a>
+
+          <!-- LinkedIn Card -->
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="liquid-card contact-item">
+            <div class="contact-icon-wrapper">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6DEE3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </div>
+            <span class="contact-label">Professional Network</span>
+            <span class="contact-val">LinkedIn</span>
+            <span class="external-arrow">↗</span>
+          </a>
+
+          <!-- Facebook Card -->
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="liquid-card contact-item">
+            <div class="contact-icon-wrapper">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6DEE3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </div>
+            <span class="contact-label">Social Profile</span>
+            <span class="contact-val">Facebook</span>
+            <span class="external-arrow">↗</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div>© 2029 Asih Knch M. Pude • Built with minimal liquid glass & Grainient aesthetics</div>
+      <div>BS Information Technology • Caraga State University</div>
+    </footer>
+
+  </div>
+
+  <script>
+    /* Grainient Canvas Engine */
+    const canvas = document.getElementById('grainient-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let width, height;
+    function resizeCanvas() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const nodes = [
+      { x: 0.2, y: 0.3, r: 0.45, vx: 0.0003, vy: 0.0004, color: [74, 0, 38] },
+      { x: 0.75, y: 0.25, r: 0.5, vx: -0.0004, vy: 0.0003, color: [108, 27, 61] },
+      { x: 0.5, y: 0.8, r: 0.55, vx: 0.0003, vy: -0.0003, color: [156, 91, 120] },
+      { x: 0.85, y: 0.75, r: 0.4, vx: -0.0002, vy: 0.0002, color: [78, 84, 92] }
+    ];
+
+    let t = 0;
+    function renderGrainient() {
+      t += 0.005;
+      ctx.fillStyle = '#10030a';
+      ctx.fillRect(0, 0, width, height);
+
+      nodes.forEach((node, i) => {
+        const cx = (node.x + Math.sin(t * 0.8 + i) * 0.08) * width;
+        const cy = (node.y + Math.cos(t * 0.7 + i) * 0.08) * height;
+        const radius = node.r * Math.max(width, height);
+
+        const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+        const [r, g, b] = node.color;
+        grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0.5)`);
+        grad.addColorStop(0.6, `rgba(${r}, ${g}, ${b}, 0.18)`);
+        grad.addColorStop(1, 'rgba(16, 3, 10, 0)');
+
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      requestAnimationFrame(renderGrainient);
+    }
+    renderGrainient();
+
+    /* Mobile Dropdown */
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileDropdown = document.getElementById('mobileDropdown');
+
+    menuToggle.addEventListener('click', () => {
+      mobileDropdown.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.mob-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileDropdown.classList.remove('open');
+      });
+    });
+
+    /* Document Tabs & Print */
+    const tabBtns = document.querySelectorAll('.doc-tab-btn');
+    const panes = {
+      'resume': document.getElementById('pane-resume'),
+      'cover-letter': document.getElementById('pane-cover-letter')
+    };
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const target = btn.getAttribute('data-doc');
+        Object.keys(panes).forEach(k => {
+          panes[k].classList.remove('active');
+        });
+        if (panes[target]) {
+          panes[target].classList.add('active');
+        }
+      });
+    });
+
+    document.getElementById('printDocBtn').addEventListener('click', () => {
+      window.print();
+    });
+
+    /* Scroll Observer */
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+
+    document.querySelectorAll('.fade-scroll').forEach(el => {
+      scrollObserver.observe(el);
+    });
+  </script>
+</body>
+</html>
